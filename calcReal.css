@@ -1,0 +1,18 @@
+button{
+	font-size: 50px; 
+	height: 100px;
+	width: 100px; 
+}
+#screen{
+	font-size: 100px; 
+	margin-left: 90px; 
+}
+#pad{
+	margin-left: 90px; 
+}
+/*#zero{
+	border-right: none;
+}
+#zero2{
+	border-left: none;
+}	*/
