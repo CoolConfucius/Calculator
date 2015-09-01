@@ -1,13 +1,13 @@
 $(document).ready(init); 
 function init () {		
-	var display = 'O'; 
+    var display = 'O'; 
 	var num1 = []; 
 	var num2 = []; 
 	var op = ''; 
 	var next = false; 
 	var isDecimal1 = false; 
 	var isDecimal2 = false; 
-	var ready = false; 	
+	var isReady = false; 	
 	var neg1 = false; 
 	var neg2 = false; 	
 	$('button').click(function(event){
@@ -20,17 +20,29 @@ function init () {
   				$show.text(display);	
 			};	
 			if (next === true) {										
-				ready = true; 
+				isReady = true; 
 		  		display = pressNum(num2, text); 
 	  			$show.text(display);
 			};		
 		};		
 		if ($buttonPressed.hasClass('op')) {
-			next = true; 						
-			op = text;					  		
+			//if next and isReady is true, want to chain. 
+			op = text;
+			if (isReady) {
+				var solution; 				
+				solution = doMath(num1, op, num2); 
+				display = solution.toString(); 
+				num1 = display.split(''); 
+				num2 = []; 
+				neg2 = false; 
+				isDecimal2 = false;				
+				isReady = false; 	
+				$show.text(display);
+			};
+				next = true; 														
 		};
 		if ($buttonPressed.hasClass('equal')) {
-			if (ready === true) {
+			if (isReady) {
 				var solution; 				
 				solution = doMath(num1, op, num2); 
 				display = solution.toString(); 
@@ -38,7 +50,8 @@ function init () {
 				num2 = []; 
 				neg2 = false; 
 				isDecimal2 = false;
-				next = false;  				
+				next = false;  			
+				isReady = false; 	
 				$show.text(display);
 			};			
 		};
@@ -48,7 +61,7 @@ function init () {
 			isDecimal1 = false; 
 			isDecimal2 = false; 
 			resetBool = false; 
-			ready = false; 
+			isReady = false; 
 			neg1 = false; 
 			neg2 = false; 
 			num1 = []; 
