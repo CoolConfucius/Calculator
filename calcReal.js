@@ -26,7 +26,7 @@ function init () {
 			};		
 		};		
 		if ($buttonPressed.hasClass('op')) {
-			//if next and isReady is true, want to chain. 
+			
 			op = text;
 			if (isReady) {
 				var solution; 				
